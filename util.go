@@ -10,7 +10,7 @@ package cfa
 import (
 	"bytes"
 	"fmt"
-	"gprovision/pkg/hw/cfa/serial"
+	"github.com/mpictor/cfa/serial"
 	"gprovision/pkg/log"
 	"io"
 	"os"

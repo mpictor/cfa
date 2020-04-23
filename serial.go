@@ -11,7 +11,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"gprovision/pkg/hw/cfa/serial"
+	"github.com/mpictor/cfa/serial"
 	"gprovision/pkg/log"
 	"io"
 	"os"

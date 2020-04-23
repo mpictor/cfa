@@ -13,8 +13,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gprovision/pkg/hw/cfa"
-	"gprovision/pkg/hw/cfa/serial"
+	"github.com/mpictor/cfa"
+	"github.com/mpictor/cfa/serial"
 	"os"
 	"runtime/pprof"
 	"runtime/trace"
