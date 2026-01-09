@@ -19,12 +19,12 @@ import (
 
 var EMissing = fmt.Errorf("No LCD found")
 
-//packages can use this rather than calling Find() and maintaining a local *Lcd.
+// Packages can use this rather than calling Find() and maintaining a local *Lcd.
 var DefaultLcd *Lcd
 
-//Preferred method of getting an Lcd{}. Finds lcd serial port, connects to it.
-//If one has already been found, return that. Stores mutable state so it can be
-//written back later.
+// Preferred method of getting an Lcd{}. Finds lcd serial port, connects to it.
+// If one has already been found, return that. Stores mutable state so it can be
+// written back later.
 func Find() (*Lcd, error) {
 	var err error
 	if DefaultLcd == nil {
@@ -40,13 +40,13 @@ func Find() (*Lcd, error) {
 
 var gaveUpSearch bool
 
-//like Find() but tries multiple times.
+// Like Find() but tries multiple times.
 func FindWithRetry() (*Lcd, error) {
 	var err error
 	if DefaultLcd == nil && !gaveUpSearch {
+		var olderr error
 		for i := 5; i > 0; i-- {
 			_, err = Find()
-			var olderr error
 			if err != nil {
 				if err != olderr {
 					log.Logf("Finding lcd: %s", err)
@@ -66,7 +66,7 @@ func FindWithRetry() (*Lcd, error) {
 	return DefaultLcd, err
 }
 
-//Called as factory restore and mfg exit
+// Called as factory restore and mfg exit
 func Uninit(_ bool) {
 	if DefaultLcd != nil {
 		DefaultLcd.Close()
@@ -80,8 +80,8 @@ func (l *Lcd) Uninit(_ bool) {
 	l.Close()
 }
 
-//Connect to an lcd given its port name, such as '/dev/ttyACM0'.
-//Stores mutable state so it can be written back later.
+// Connect to an lcd given its port name, such as '/dev/ttyACM0'.
+// Stores mutable state so it can be written back later.
 func ConnectTo(dev string) (*Lcd, error) {
 	sd, err := SerialSetup(dev)
 	if err != nil {
@@ -115,10 +115,10 @@ func connectTo(sd *SerialDev) (l *Lcd, err error) {
 	return
 }
 
-//used in FindDevs to print fewer messages
+// used in FindDevs to print fewer messages
 var failedToLocate bool
 
-//look for usb serial devices that use the cdc or ftdi driver and appear to be Crystalfontz LCDs.
+// Look for usb serial devices that use the cdc or ftdi driver and appear to be Crystalfontz LCDs.
 func FindDevs() (devs []string) {
 	devs = findNewDevs()
 	devs = append(devs, findOldDevs()...)
@@ -145,7 +145,7 @@ func FindDevs() (devs []string) {
 	return
 }
 
-//old crystalfontz devices using FTDI driver, /dev/ttyUSB*
+// Finds old crystalfontz devices using FTDI driver, /dev/ttyUSB*
 func findOldDevs() (devs []string) {
 	entries, _ := fp.Glob("/sys/bus/usb-serial/drivers/ftdi_sio/tty*")
 	for _, e := range entries {
@@ -171,7 +171,7 @@ func findOldDevs() (devs []string) {
 	return
 }
 
-//find new crystalfontz devices using CDC ACM driver, /dev/ttyACM*
+// Finds new crystalfontz devices using CDC ACM driver, /dev/ttyACM*
 func findNewDevs() (devs []string) {
 	//it seems there will be 2 dirs for each device. look for one with a tty subdir.
 	entries, _ := fp.Glob("/sys/bus/usb/drivers/cdc_acm/*/tty/tty*")
