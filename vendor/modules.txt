@@ -1,0 +1,8 @@
+# golang.org/x/sys v0.40.0
+## explicit; go 1.24.0
+golang.org/x/sys/unix
+
+# github.com/purecloudlabs/gprovision v0.0.0-20221215221243-b79a0d8da330
+gprovision/pkg/log
+gprovision/pkg/log/testlog
+gprovision/pkg/log/flags

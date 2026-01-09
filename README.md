@@ -13,4 +13,4 @@ Some tests are occasionally flaky, and the test code is rather ugly. I wasn't su
 This is the cfa package that's part of https://github.com/purecloudlabs/gprovision, specifically
 https://github.com/purecloudlabs/gprovision/tree/master/gopath/src/gprovision/pkg/hw/cfa .
 
-I am duplicating it here to re-write import paths so it's easier to use standalone. Other than the paths, I intend to keep it in sync with upstream - if it diverges, let me know!
+I am duplicating it here to re-write import paths so it's easier to use standalone.
